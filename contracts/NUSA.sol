@@ -335,7 +335,7 @@ contract Ownable is Context {
   }
 }
 
-contract NGG is Context, IBEP20, Ownable {
+contract NUSA is Context, IBEP20, Ownable {
   using SafeMath for uint256;
 
   mapping (address => uint256) private _balances;
@@ -347,8 +347,8 @@ contract NGG is Context, IBEP20, Ownable {
   string public _name;
 
   constructor(address _multisig) public {
-    _name = "Nusa Gaming Guild";
-    _symbol = "NGG";
+    _name = "Nusantara Gaming Guild";
+    _symbol = "NUSA";
     _totalSupply = 1000000000000 * 10**8;
     _balances[_multisig] = _totalSupply;
 
