@@ -11,6 +11,11 @@ interface IBEP20 {
   function totalSupply() external view returns (uint256);
 
   /**
+   * @dev Returns the token decimals.
+   */
+  function decimals() external view returns (uint8);
+
+  /**
    * @dev Returns the token symbol.
    */
   function symbol() external view returns (string memory);
@@ -343,13 +348,15 @@ contract NUSA is Context, IBEP20, Ownable {
   mapping (address => mapping (address => uint256)) private _allowances;
 
   uint256 private _totalSupply;
+  uint8 public _decimals;
   string public _symbol;
   string public _name;
 
   constructor(address _multisig) public {
     _name = "Nusantara Gaming Guild";
     _symbol = "NUSA";
-    _totalSupply = 1000000000000 * 10**8;
+    _decimals = 18;
+    _totalSupply = 1000000000 * (10 ** 18);
     _balances[_multisig] = _totalSupply;
 
     emit Transfer(address(0), _multisig, _totalSupply);
@@ -360,6 +367,13 @@ contract NUSA is Context, IBEP20, Ownable {
    */
   function getOwner() external view returns (address) {
     return owner();
+  }
+
+  /**
+   * @dev Returns the token decimals.
+   */
+  function decimals() external view returns (uint8) {
+    return _decimals;
   }
 
   /**
